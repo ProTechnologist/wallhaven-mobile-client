@@ -1,20 +1,56 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// In App.js in a new project
 
-export default function App() {
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import LandingPage from './screens/LandingPage';
+import Login from './screens/Login';
+import Register from './screens/Register';
+import Dashboard from './screens/Dashboard';
+import Wallhaven from './screens/Wallhaven';
+import WallhavenImageViewer from './screens/WallhavenImageViewer';
+
+const Stack = createNativeStackNavigator();
+
+function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{ contentStyle: { backgroundColor: 'black' } }}>
+        <Stack.Screen
+          name='Wallhaven'
+          component={Wallhaven}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name='WallhavenImageViewer'
+          component={WallhavenImageViewer}
+          options={{ headerShown: false, backgroundColor: 'black' }}
+        />
+        <Stack.Screen
+          name='Login'
+          component={Login}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name='Dashboard'
+          component={Dashboard}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name='LandingPage'
+          component={LandingPage}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name='Register'
+          component={Register}
+          options={{ headerShown: false }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
